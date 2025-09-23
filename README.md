@@ -1,73 +1,75 @@
-# Welcome to your Lovable project
+# Website Gereja Katedral Santa Maria Palembang
 
-## Project info
+## Deskripsi Project
 
-**URL**: https://lovable.dev/projects/ff0b31d6-b81c-44ce-97a6-813de35c19a7
+Website resmi Gereja Katedral Santa Maria Palembang yang dibangun dengan React, TypeScript, dan Tailwind CSS. Website ini menyediakan informasi tentang gereja, jadwal misa, ajaran Katolik, dan kontak untuk umat.
 
-## How can I edit this code?
+## Fitur Utama
 
-There are several ways of editing your application.
+- **Navigasi Responsif**: Header dengan menu dropdown untuk ajaran gereja
+- **Hero Section**: Tampilan utama dengan gambar katedral dan informasi sejarah
+- **Ajaran Gereja**: Section khusus untuk 6 sakramen utama Gereja Katolik
+- **Footer Informatif**: Kontak, alamat, dan jadwal misa lengkap
+- **Desain Liturgis**: Menggunakan warna-warna simbolis Gereja Katolik (ungu, putih, hijau, merah, emas)
 
-**Use Lovable**
+## Teknologi
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/ff0b31d6-b81c-44ce-97a6-813de35c19a7) and start prompting.
+- **Frontend**: React 18 + TypeScript
+- **Styling**: Tailwind CSS dengan design system kustom
+- **Build Tool**: Vite
+- **UI Components**: Shadcn/ui
+- **Icons**: Lucide React
+- **Routing**: React Router DOM
 
-Changes made via Lovable will be committed automatically to this repo.
+## Instalasi dan Penggunaan
 
-**Use your preferred IDE**
+```bash
+# Clone repository
+git clone <repository-url>
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+# Navigate to project directory
+cd gereja-katedral-website
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+# Install dependencies
+npm install
 
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# Start development server
 npm run dev
+
+# Build for production
+npm run build
 ```
 
-**Edit a file directly in GitHub**
+## Struktur Warna Liturgis
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+Website menggunakan skema warna yang sesuai dengan tradisi Gereja Katolik:
 
-**Use GitHub Codespaces**
+- **Ungu (Primary)**: Pertobatan dan kerendahan hati
+- **Putih/Krem (Secondary)**: Kemurnian, sukacita, dan kemenangan
+- **Hijau (Hope)**: Harapan dan pembaharuan
+- **Merah (Accent)**: Kasih dan pengorbanan
+- **Emas (Gold)**: Elemen sakral dan liturgis
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## Customization
 
-## What technologies are used for this project?
+Untuk mengubah konten website:
 
-This project is built with:
+1. **Informasi Gereja**: Edit `src/components/Hero.tsx`
+2. **Ajaran Gereja**: Modify array di `src/components/AjaranGereja.tsx`
+3. **Kontak & Jadwal**: Update `src/components/Footer.tsx`
+4. **Navigasi**: Customize `src/components/Header.tsx`
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+## Browser Support
 
-## How can I deploy this project?
+- Chrome 88+
+- Firefox 85+
+- Safari 14+
+- Edge 88+
 
-Simply open [Lovable](https://lovable.dev/projects/ff0b31d6-b81c-44ce-97a6-813de35c19a7) and click on Share -> Publish.
+## License
 
-## Can I connect a custom domain to my Lovable project?
+This project is developed for Gereja Katedral Santa Maria Palembang.
 
-Yes, you can!
+---
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+Untuk dokumentasi lengkap, lihat file `DOCUMENTATION.md`.

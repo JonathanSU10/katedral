@@ -22,6 +22,36 @@ const Header = () => {
     "Sakramen Pengurapan"
   ];
 
+  const jadwalItems = [
+    "Misa Harian",
+    "Misa Minggu", 
+    "Misa Hari Raya",
+    "Adorasi",
+    "Doa Rosario",
+    "Via Crucis",
+    "Novena"
+  ];
+
+  const kegiatanItems = [
+    "OMK (Orang Muda Katolik)",
+    "Wanita Katolik",
+    "Pria Katolik",
+    "Anak-anak",
+    "Katekese",
+    "Retret",
+    "Ziarah",
+    "Kegiatan Sosial"
+  ];
+
+  const tentangItems = [
+    "Sejarah Gereja",
+    "Visi dan Misi",
+    "Pastor dan Staf",
+    "Fasilitas",
+    "Kontak",
+    "Lokasi"
+  ];
+
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center">
@@ -44,9 +74,28 @@ const Header = () => {
             Beranda
           </Button>
           
-          <Button variant="ghost" className="text-primary hover:text-accent hover:bg-secondary/50">
-            Jadwal
-          </Button>
+          {/* Jadwal Dropdown */}
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button 
+                variant="ghost" 
+                className="text-primary hover:text-accent hover:bg-secondary/50 flex items-center gap-1"
+              >
+                Jadwal
+                <ChevronDown className="h-4 w-4" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end" className="w-56 bg-card border-border shadow-sacred">
+              {jadwalItems.map((item) => (
+                <DropdownMenuItem 
+                  key={item}
+                  className="cursor-pointer hover:bg-secondary focus:bg-secondary text-card-foreground"
+                >
+                  {item}
+                </DropdownMenuItem>
+              ))}
+            </DropdownMenuContent>
+          </DropdownMenu>
 
           {/* Ajaran Gereja Dropdown */}
           <DropdownMenu>
@@ -71,13 +120,55 @@ const Header = () => {
             </DropdownMenuContent>
           </DropdownMenu>
 
+          {/* Kegiatan Dropdown */}
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button 
+                variant="ghost" 
+                className="text-primary hover:text-accent hover:bg-secondary/50 flex items-center gap-1"
+              >
+                Kegiatan
+                <ChevronDown className="h-4 w-4" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end" className="w-56 bg-card border-border shadow-sacred">
+              {kegiatanItems.map((item) => (
+                <DropdownMenuItem 
+                  key={item}
+                  className="cursor-pointer hover:bg-secondary focus:bg-secondary text-card-foreground"
+                >
+                  {item}
+                </DropdownMenuItem>
+              ))}
+            </DropdownMenuContent>
+          </DropdownMenu>
+
           <Button variant="ghost" className="text-primary hover:text-accent hover:bg-secondary/50">
             Pengumuman
           </Button>
           
-          <Button variant="ghost" className="text-primary hover:text-accent hover:bg-secondary/50">
-            Tentang
-          </Button>
+          {/* Tentang Dropdown */}
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button 
+                variant="ghost" 
+                className="text-primary hover:text-accent hover:bg-secondary/50 flex items-center gap-1"
+              >
+                Tentang
+                <ChevronDown className="h-4 w-4" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end" className="w-56 bg-card border-border shadow-sacred">
+              {tentangItems.map((item) => (
+                <DropdownMenuItem 
+                  key={item}
+                  className="cursor-pointer hover:bg-secondary focus:bg-secondary text-card-foreground"
+                >
+                  {item}
+                </DropdownMenuItem>
+              ))}
+            </DropdownMenuContent>
+          </DropdownMenu>
         </nav>
       </div>
     </header>
