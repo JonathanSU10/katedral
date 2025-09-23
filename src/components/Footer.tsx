@@ -11,9 +11,9 @@ const Footer = () => {
             <div className="flex items-start gap-3">
               <MapPin className="h-5 w-5 text-gold mt-1 flex-shrink-0" />
               <p className="text-sm leading-relaxed">
-                Jl. Kapten Rivai No. 5<br />
-                Ilir Barat I, Palembang<br />
-                Sumatera Selatan 30137
+                Jl. Dr. Sutomo No.4<br />
+                Talang Semut, Kec. Bukit Kecil<br />
+                Kota Palembang, Sumatera Selatan 30121
               </p>
             </div>
           </div>
@@ -39,15 +39,19 @@ const Footer = () => {
             <div className="space-y-2 text-sm">
               <div className="flex items-center gap-3">
                 <Clock className="h-4 w-4 text-gold" />
-                <span>Senin-Sabtu: 06.00 WIB</span>
+                <span>Misa Harian (Senin - Selasa): 05.45 WIB</span>
               </div>
               <div className="flex items-center gap-3">
                 <Clock className="h-4 w-4 text-gold" />
-                <span>Minggu: 06.00, 08.00, 10.00 WIB</span>
+                <span>Misa Harian (Rabu - Jumat): 18.00 WIB</span>
               </div>
               <div className="flex items-center gap-3">
                 <Clock className="h-4 w-4 text-gold" />
-                <span>Sabtu Sore: 18.00 WIB</span>
+                <span>Misa Sabtu: 18.00 WIB</span>
+              </div>
+              <div className="flex items-center gap-3">
+                <Clock className="h-4 w-4 text-gold" />
+                <span>Misa Minggu: 07.00 WIB & 18.00 WIB</span>
               </div>
             </div>
           </div>

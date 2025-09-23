@@ -1,6 +1,12 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import Breadcrumb from "@/components/Breadcrumb";
 
 const AjaranGereja = () => {
+  const breadcrumbItems = [
+    { name: "Beranda", path: "/" },
+    { name: "Ajaran Gereja" }
+  ];
+
   const teachings = [
     {
       title: "Sakramen Baptis",
@@ -29,35 +35,35 @@ const AjaranGereja = () => {
   ];
 
   return (
-    <section className="py-20 bg-secondary/20">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-primary mb-4">
-            Ajaran Gereja
-          </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Mengenal lebih dalam ajaran-ajaran fundamental Gereja Katolik yang menjadi dasar kehidupan beriman kita.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {teachings.map((teaching, index) => (
-            <Card key={index} className="border-border/50 hover:shadow-hope transition-all duration-300 hover:-translate-y-1 bg-card/80 backdrop-blur-sm">
-              <CardHeader>
-                <CardTitle className="text-primary text-xl">
-                  {teaching.title}
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground leading-relaxed">
-                  {teaching.description}
-                </p>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
+    <div className="container mx-auto px-4 py-8">
+      <Breadcrumb items={breadcrumbItems} />
+      
+      <div className="text-center mb-16">
+        <h1 className="text-4xl md:text-5xl font-bold text-primary mb-4">
+          Ajaran Gereja
+        </h1>
+        <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          Mengenal lebih dalam ajaran-ajaran fundamental Gereja Katolik yang menjadi dasar kehidupan beriman kita.
+        </p>
       </div>
-    </section>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {teachings.map((teaching, index) => (
+          <Card key={index} className="border-border/50 hover:shadow-hope transition-all duration-300 hover:-translate-y-1 bg-card/80 backdrop-blur-sm">
+            <CardHeader>
+              <CardTitle className="text-primary text-xl">
+                {teaching.title}
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-muted-foreground leading-relaxed">
+                {teaching.description}
+              </p>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+    </div>
   );
 };
 

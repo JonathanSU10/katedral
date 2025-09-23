@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -7,49 +8,38 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import crossLogo from "@/assets/cross-logo.svg";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const ajaranItems = [
-    "Sakramen",
-    "Sakramen Baptis", 
-    "Sakramen Krisma",
-    "Sakramen Ekaristi",
-    "Sakramen Pengakuan Dosa",
-    "Sakramen Tahbisan",
-    "Sakramen Pernikahan",
-    "Sakramen Pengurapan"
+  // Menu items for dropdowns
+  const profilItems = [
+    { name: "Sejarah Singkat Gereja", path: "/sejarah-singkat-gereja" },
+    { name: "Sambutan Romo Paroki", path: "/sambutan-romo-paroki" },
+    { name: "Sambutan Bapak Uskup", path: "/sambutan-uskup" },
+    { name: "Sambutan Pengurus Gereja", path: "/sambutan-pengurus-gereja" },
+    { name: "Fasilitas Gereja", path: "/fasilitas-gereja" }
   ];
 
   const jadwalItems = [
-    "Misa Harian",
-    "Misa Minggu", 
-    "Misa Hari Raya",
-    "Adorasi",
-    "Doa Rosario",
-    "Via Crucis",
-    "Novena"
+    { name: "Jadwal Misa", path: "/jadwal-misa" },
+    { name: "Jadwal Kegiatan Kategorial", path: "/jadwal-kegiatan-kategorial" }
   ];
 
-  const kegiatanItems = [
-    "OMK (Orang Muda Katolik)",
-    "Wanita Katolik",
-    "Pria Katolik",
-    "Anak-anak",
-    "Katekese",
-    "Retret",
-    "Ziarah",
-    "Kegiatan Sosial"
+  const komunitasItems = [
+    { name: "Isi Kegiatan", path: "/isi-kegiatan" }
+    // Formulir items have been moved to formulirItems
   ];
 
-  const tentangItems = [
-    "Sejarah Gereja",
-    "Visi dan Misi",
-    "Pastor dan Staf",
-    "Fasilitas",
-    "Kontak",
-    "Lokasi"
+  const formulirItems = [
+    { name: "Formulir Kontak", path: "/formulir-kontak" },
+    { name: "Formulir Kegiatan Krisma", path: "/formulir-krisma" },
+    { name: "Formulir Kegiatan Katakumen", path: "/formulir-katakumen" }
+  ];
+
+  const kontakItems = [
+    { name: "Nomor Telepon / Email / Alamat", path: "/kontak" }
   ];
 
   return (
@@ -57,8 +47,8 @@ const Header = () => {
       <div className="container flex h-16 items-center">
         {/* Logo and Title */}
         <div className="flex items-center space-x-4">
-          <div className="h-10 w-10 rounded-lg bg-gradient-sacred flex items-center justify-center shadow-sacred">
-            <span className="text-primary-foreground font-bold text-lg">⛪</span>
+          <div className="h-10 w-10 rounded-lg bg-gradient-sacred flex items-center justify-center shadow-sacred p-2">
+            <img src={crossLogo} alt="Cross Logo" className="h-full w-full object-contain filter brightness-0 invert" />
           </div>
           <h1 className="hidden sm:block text-xl font-bold text-primary">
             Gereja Katedral Santa Maria Palembang
@@ -70,9 +60,33 @@ const Header = () => {
 
         {/* Navigation */}
         <nav className="ml-auto flex items-center space-x-6">
-          <Button variant="ghost" className="text-primary hover:text-accent hover:bg-secondary/50">
-            Beranda
+          <Button variant="ghost" className="text-primary hover:text-accent hover:bg-secondary/50" asChild>
+            <Link to="/">Beranda</Link>
           </Button>
+          
+          {/* Profil Dropdown */}
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button 
+                variant="ghost" 
+                className="text-primary hover:text-accent hover:bg-secondary/50 flex items-center gap-1"
+              >
+                Profil
+                <ChevronDown className="h-4 w-4" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end" className="w-64 bg-card border-border shadow-sacred">
+              {profilItems.map((item) => (
+                <DropdownMenuItem 
+                  key={item.name}
+                  className="cursor-pointer hover:bg-secondary focus:bg-secondary text-card-foreground"
+                  asChild
+                >
+                  <Link to={item.path}>{item.name}</Link>
+                </DropdownMenuItem>
+              ))}
+            </DropdownMenuContent>
+          </DropdownMenu>
           
           {/* Jadwal Dropdown */}
           <DropdownMenu>
@@ -85,86 +99,96 @@ const Header = () => {
                 <ChevronDown className="h-4 w-4" />
               </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="w-56 bg-card border-border shadow-sacred">
+            <DropdownMenuContent align="end" className="w-64 bg-card border-border shadow-sacred">
               {jadwalItems.map((item) => (
                 <DropdownMenuItem 
-                  key={item}
+                  key={item.name}
                   className="cursor-pointer hover:bg-secondary focus:bg-secondary text-card-foreground"
+                  asChild
                 >
-                  {item}
+                  <Link to={item.path}>{item.name}</Link>
                 </DropdownMenuItem>
               ))}
             </DropdownMenuContent>
           </DropdownMenu>
 
-          {/* Ajaran Gereja Dropdown */}
+          {/* Ajaran Gereja */}
+          <Button variant="ghost" className="text-primary hover:text-accent hover:bg-secondary/50" asChild>
+            <Link to="/ajaran-gereja">Ajaran Gereja</Link>
+          </Button>
+
+          {/* Komunitas Gereja Dropdown */}
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button 
                 variant="ghost" 
                 className="text-primary hover:text-accent hover:bg-secondary/50 flex items-center gap-1"
               >
-                Ajaran Gereja
+                Komunitas Gereja
                 <ChevronDown className="h-4 w-4" />
               </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="w-56 bg-card border-border shadow-sacred">
-              {ajaranItems.map((item) => (
+            <DropdownMenuContent align="end" className="w-64 bg-card border-border shadow-sacred">
+              {komunitasItems.map((item) => (
                 <DropdownMenuItem 
-                  key={item}
+                  key={item.name}
                   className="cursor-pointer hover:bg-secondary focus:bg-secondary text-card-foreground"
+                  asChild
                 >
-                  {item}
+                  <Link to={item.path}>{item.name}</Link>
                 </DropdownMenuItem>
               ))}
             </DropdownMenuContent>
           </DropdownMenu>
 
-          {/* Kegiatan Dropdown */}
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button 
-                variant="ghost" 
-                className="text-primary hover:text-accent hover:bg-secondary/50 flex items-center gap-1"
-              >
-                Kegiatan
-                <ChevronDown className="h-4 w-4" />
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="w-56 bg-card border-border shadow-sacred">
-              {kegiatanItems.map((item) => (
-                <DropdownMenuItem 
-                  key={item}
-                  className="cursor-pointer hover:bg-secondary focus:bg-secondary text-card-foreground"
-                >
-                  {item}
-                </DropdownMenuItem>
-              ))}
-            </DropdownMenuContent>
-          </DropdownMenu>
-
-          <Button variant="ghost" className="text-primary hover:text-accent hover:bg-secondary/50">
-            Pengumuman
+          {/* Pengumuman */}
+          <Button variant="ghost" className="text-primary hover:text-accent hover:bg-secondary/50" asChild>
+            <Link to="/pengumuman">Pengumuman</Link>
           </Button>
           
-          {/* Tentang Dropdown */}
+          {/* Formulir Dropdown - Now contains all form items */}
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button 
                 variant="ghost" 
                 className="text-primary hover:text-accent hover:bg-secondary/50 flex items-center gap-1"
               >
-                Tentang
+                Formulir
                 <ChevronDown className="h-4 w-4" />
               </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="w-56 bg-card border-border shadow-sacred">
-              {tentangItems.map((item) => (
+            <DropdownMenuContent align="end" className="w-64 bg-card border-border shadow-sacred">
+              {formulirItems.map((item) => (
                 <DropdownMenuItem 
-                  key={item}
+                  key={item.name}
                   className="cursor-pointer hover:bg-secondary focus:bg-secondary text-card-foreground"
+                  asChild
                 >
-                  {item}
+                  <Link to={item.path}>{item.name}</Link>
+                </DropdownMenuItem>
+              ))}
+            </DropdownMenuContent>
+          </DropdownMenu>
+          
+          {/* Kontak Dropdown */}
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button 
+                variant="ghost" 
+                className="text-primary hover:text-accent hover:bg-secondary/50 flex items-center gap-1"
+              >
+                Kontak
+                <ChevronDown className="h-4 w-4" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end" className="w-64 bg-card border-border shadow-sacred">
+              {kontakItems.map((item) => (
+                <DropdownMenuItem 
+                  key={item.name}
+                  className="cursor-pointer hover:bg-secondary focus:bg-secondary text-card-foreground"
+                  asChild
+                >
+                  <Link to={item.path}>{item.name}</Link>
                 </DropdownMenuItem>
               ))}
             </DropdownMenuContent>

@@ -180,6 +180,14 @@ Website dapat di-deploy ke berbagai platform:
 - Jalankan `npm run build` untuk melihat error detail
 - Pastikan semua import sudah benar
 - Check TypeScript errors
+<<<<<<< HEAD
+=======
+
+## Kontak Developer
+
+Untuk pertanyaan teknis atau maintenance, hubungi tim development melalui channel yang tersedia di platform Lovable.
+
+>>>>>>> 4e70097b3062ad4deb31d49a32d924e90c57dd35
 ---
 
 *Dokumentasi ini akan terus diperbarui seiring dengan pengembangan fitur baru.*
