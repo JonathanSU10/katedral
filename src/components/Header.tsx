@@ -40,11 +40,11 @@ const Header = () => {
 
         {/* Navigation */}
         <nav className="ml-auto flex items-center space-x-6">
-          <Button variant="ghost" className="text-primary hover:text-accent">
+          <Button variant="ghost" className="text-primary hover:text-accent hover:bg-secondary/50">
             Beranda
           </Button>
           
-          <Button variant="ghost" className="text-primary hover:text-accent">
+          <Button variant="ghost" className="text-primary hover:text-accent hover:bg-secondary/50">
             Jadwal
           </Button>
 
@@ -53,7 +53,7 @@ const Header = () => {
             <DropdownMenuTrigger asChild>
               <Button 
                 variant="ghost" 
-                className="text-primary hover:text-accent flex items-center gap-1"
+                className="text-primary hover:text-accent hover:bg-secondary/50 flex items-center gap-1"
               >
                 Ajaran Gereja
                 <ChevronDown className="h-4 w-4" />
@@ -71,11 +71,11 @@ const Header = () => {
             </DropdownMenuContent>
           </DropdownMenu>
 
-          <Button variant="ghost" className="text-primary hover:text-accent">
+          <Button variant="ghost" className="text-primary hover:text-accent hover:bg-secondary/50">
             Pengumuman
           </Button>
           
-          <Button variant="ghost" className="text-primary hover:text-accent">
+          <Button variant="ghost" className="text-primary hover:text-accent hover:bg-secondary/50">
             Tentang
           </Button>
         </nav>

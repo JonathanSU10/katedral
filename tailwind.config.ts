@@ -24,6 +24,14 @@ export default {
           foreground: "hsl(var(--primary-foreground))",
           glow: "hsl(var(--primary-glow))",
         },
+        hope: {
+          DEFAULT: "hsl(var(--hope))",
+          foreground: "hsl(var(--hope-foreground))",
+        },
+        gold: {
+          DEFAULT: "hsl(var(--gold))",
+          foreground: "hsl(var(--gold-foreground))",
+        },
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
           foreground: "hsl(var(--secondary-foreground))",
@@ -67,10 +75,14 @@ export default {
       backgroundImage: {
         'gradient-sacred': 'var(--gradient-sacred)',
         'gradient-hero': 'var(--gradient-hero)',
+        'gradient-hope': 'var(--gradient-hope)',
+        'gradient-love': 'var(--gradient-love)',
         'gradient-gold': 'var(--gradient-gold)',
       },
       boxShadow: {
         'sacred': 'var(--shadow-sacred)',
+        'hope': 'var(--shadow-hope)',
+        'love': 'var(--shadow-love)',
         'gold': 'var(--shadow-gold)',
       },
       transitionProperty: {

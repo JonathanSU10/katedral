@@ -16,7 +16,9 @@ const buttonVariants = cva(
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
         sacred: "bg-gradient-sacred text-primary-foreground hover:shadow-sacred transform hover:scale-105 transition-all duration-300",
-        gold: "bg-gradient-gold text-primary hover:shadow-gold transform hover:scale-105 transition-all duration-300",
+        hope: "bg-gradient-hope text-hope-foreground hover:shadow-hope transform hover:scale-105 transition-all duration-300",
+        love: "bg-gradient-love text-accent-foreground hover:shadow-love transform hover:scale-105 transition-all duration-300",
+        gold: "bg-gradient-gold text-gold-foreground hover:shadow-gold transform hover:scale-105 transition-all duration-300",
       },
       size: {
         default: "h-10 px-4 py-2",

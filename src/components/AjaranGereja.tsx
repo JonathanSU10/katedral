@@ -42,7 +42,7 @@ const AjaranGereja = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {teachings.map((teaching, index) => (
-            <Card key={index} className="border-border/50 hover:shadow-sacred transition-all duration-300 hover:-translate-y-1">
+            <Card key={index} className="border-border/50 hover:shadow-hope transition-all duration-300 hover:-translate-y-1 bg-card/80 backdrop-blur-sm">
               <CardHeader>
                 <CardTitle className="text-primary text-xl">
                   {teaching.title}

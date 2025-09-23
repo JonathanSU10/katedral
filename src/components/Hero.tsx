@@ -25,7 +25,7 @@ const Hero = () => {
         
         <Button 
           size="lg" 
-          className="bg-accent hover:bg-accent/90 text-primary font-semibold px-8 py-6 text-lg shadow-gold transform transition-all duration-300 hover:scale-105"
+          className="bg-gradient-gold text-gold-foreground hover:shadow-gold font-semibold px-8 py-6 text-lg transform transition-all duration-300 hover:scale-105"
         >
           Selengkapnya
         </Button>
