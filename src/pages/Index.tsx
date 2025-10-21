@@ -41,11 +41,6 @@ const Index = () => {
       <main className="flex-1">
         <Hero />
         
-        {/* Breadcrumb */}
-        <div className="container mx-auto px-4 py-4">
-          <Breadcrumb items={breadcrumbItems} />
-        </div>
-        
         {/* Pengumuman Terbaru Section */}
         <section className="py-16 bg-secondary/20">
           <div className="container mx-auto px-4">

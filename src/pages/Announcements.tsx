@@ -1,13 +1,9 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Calendar, Clock } from "lucide-react";
-import Breadcrumb from "@/components/Breadcrumb";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 const Announcements = () => {
-  const breadcrumbItems = [
-    { name: "Beranda", path: "/" },
-    { name: "Pengumuman" }
-  ];
-
   const announcements = [
     {
       id: 1,
@@ -52,47 +48,51 @@ const Announcements = () => {
   ];
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <Breadcrumb items={breadcrumbItems} />
-      
-      <div className="text-center mb-12">
-        <h1 className="text-4xl font-bold text-primary mb-4">Pengumuman Gereja</h1>
-        <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-          Pengumuman terbaru dan kegiatan dari Gereja Katedral Santa Maria Palembang
-        </p>
-      </div>
+    <div className="min-h-screen flex flex-col">
+      <Header />
+      <main className="flex-1">
+        <div className="container mx-auto px-4 py-8">
+          <div className="text-center mb-12">
+            <h1 className="text-4xl font-bold text-primary mb-4">Pengumuman Gereja</h1>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Pengumuman terbaru dan kegiatan dari Gereja Katedral Santa Maria Palembang
+            </p>
+          </div>
 
-      <div className="space-y-6">
-        {announcements.map((announcement) => (
-          <Card key={announcement.id} className="border-border/50 bg-card/80 backdrop-blur-sm hover:shadow-hope transition-all">
-            <CardHeader>
-              <div className="flex flex-wrap items-center justify-between gap-4">
-                <CardTitle className="text-xl text-primary">{announcement.title}</CardTitle>
-                <div className="flex items-center gap-4">
-                  <div className="flex items-center gap-1 text-sm text-muted-foreground">
-                    <Calendar className="h-4 w-4" />
-                    <span>{announcement.date}</span>
+          <div className="space-y-6">
+            {announcements.map((announcement) => (
+              <Card key={announcement.id} className="border-border/50 bg-card/80 backdrop-blur-sm hover:shadow-hope transition-all">
+                <CardHeader>
+                  <div className="flex flex-wrap items-center justify-between gap-4">
+                    <CardTitle className="text-xl text-primary">{announcement.title}</CardTitle>
+                    <div className="flex items-center gap-4">
+                      <div className="flex items-center gap-1 text-sm text-muted-foreground">
+                        <Calendar className="h-4 w-4" />
+                        <span>{announcement.date}</span>
+                      </div>
+                      <div className="flex items-center gap-1 text-sm text-muted-foreground">
+                        <Clock className="h-4 w-4" />
+                        <span>{announcement.time}</span>
+                      </div>
+                    </div>
                   </div>
-                  <div className="flex items-center gap-1 text-sm text-muted-foreground">
-                    <Clock className="h-4 w-4" />
-                    <span>{announcement.time}</span>
+                  <div>
+                    <span className="inline-block px-3 py-1 text-xs font-semibold rounded-full bg-secondary text-secondary-foreground">
+                      {announcement.category}
+                    </span>
                   </div>
-                </div>
-              </div>
-              <div>
-                <span className="inline-block px-3 py-1 text-xs font-semibold rounded-full bg-secondary text-secondary-foreground">
-                  {announcement.category}
-                </span>
-              </div>
-            </CardHeader>
-            <CardContent>
-              <p className="text-muted-foreground leading-relaxed">
-                {announcement.content}
-              </p>
-            </CardContent>
-          </Card>
-        ))}
-      </div>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-muted-foreground leading-relaxed">
+                    {announcement.content}
+                  </p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </main>
+      <Footer />
     </div>
   );
 };

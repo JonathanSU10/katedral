@@ -1,13 +1,8 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import Breadcrumb from "@/components/Breadcrumb";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 const FasilitasGereja = () => {
-  const breadcrumbItems = [
-    { name: "Beranda", path: "/" },
-    { name: "Profil", path: "#" },
-    { name: "Fasilitas Gereja" }
-  ];
-
   const facilities = [
     {
       name: "Gedung Gereja Utama",
@@ -42,71 +37,75 @@ const FasilitasGereja = () => {
   ];
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <Breadcrumb items={breadcrumbItems} />
-      
-      <div className="text-center mb-12">
-        <h1 className="text-4xl font-bold text-primary mb-4">Fasilitas Gereja</h1>
-        <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-          Fasilitas yang tersedia di Gereja Katedral Santa Maria Palembang untuk mendukung ibadah dan kegiatan umat
-        </p>
-      </div>
+    <div className="min-h-screen flex flex-col">
+      <Header />
+      <main className="flex-1">
+        <div className="container mx-auto px-4 py-8">
+          <div className="text-center mb-12">
+            <h1 className="text-4xl font-bold text-primary mb-4">Fasilitas Gereja</h1>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Fasilitas yang tersedia di Gereja Katedral Santa Maria Palembang untuk mendukung ibadah dan kegiatan umat
+            </p>
+          </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {facilities.map((facility, index) => (
-          <Card key={index} className="border-border/50 bg-card/80 backdrop-blur-sm hover:shadow-hope transition-all">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {facilities.map((facility, index) => (
+              <Card key={index} className="border-border/50 bg-card/80 backdrop-blur-sm hover:shadow-hope transition-all">
+                <CardHeader>
+                  <CardTitle className="text-xl text-primary">{facility.name}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-muted-foreground mb-4">{facility.description}</p>
+                  <div className="space-y-2">
+                    <h4 className="font-semibold">Fasilitas:</h4>
+                    <ul className="list-disc pl-5 space-y-1">
+                      {facility.features.map((feature, idx) => (
+                        <li key={idx} className="text-sm">{feature}</li>
+                      ))}
+                    </ul>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+
+          <Card className="mt-12 border-border/50 bg-card/80 backdrop-blur-sm">
             <CardHeader>
-              <CardTitle className="text-xl text-primary">{facility.name}</CardTitle>
+              <CardTitle className="text-2xl text-primary">Fasilitas Tambahan</CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-muted-foreground mb-4">{facility.description}</p>
-              <div className="space-y-2">
-                <h4 className="font-semibold">Fasilitas:</h4>
-                <ul className="list-disc pl-5 space-y-1">
-                  {facility.features.map((feature, idx) => (
-                    <li key={idx} className="text-sm">{feature}</li>
-                  ))}
-                </ul>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <h3 className="text-xl font-semibold mb-3">Parkir</h3>
+                  <p className="text-muted-foreground mb-4">
+                    Area parkir yang luas dengan kapasitas 200 kendaraan, dilengkapi dengan area parkir khusus 
+                    untuk difabel dan motor.
+                  </p>
+                  <ul className="list-disc pl-5 space-y-1 text-muted-foreground">
+                    <li>Parkir mobil: 150 slot</li>
+                    <li>Parkir motor: 50 slot</li>
+                    <li>Parkir difabel: 5 slot</li>
+                  </ul>
+                </div>
+                <div>
+                  <h3 className="text-xl font-semibold mb-3">Aksesibilitas</h3>
+                  <p className="text-muted-foreground">
+                    Gereja dilengkapi dengan fasilitas ramah difabel termasuk jalur kursi roda, 
+                    toilet khusus, dan lift untuk akses ke lantai atas.
+                  </p>
+                  <div className="mt-4">
+                    <h4 className="font-semibold mb-2">Alamat Gereja</h4>
+                    <p className="text-muted-foreground">
+                      Jl. Dr. Sutomo No.4, Talang Semut, Kec. Bukit Kecil, Kota Palembang, Sumatera Selatan 30121
+                    </p>
+                  </div>
+                </div>
               </div>
             </CardContent>
           </Card>
-        ))}
-      </div>
-
-      <Card className="mt-12 border-border/50 bg-card/80 backdrop-blur-sm">
-        <CardHeader>
-          <CardTitle className="text-2xl text-primary">Fasilitas Tambahan</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div>
-              <h3 className="text-xl font-semibold mb-3">Parkir</h3>
-              <p className="text-muted-foreground mb-4">
-                Area parkir yang luas dengan kapasitas 200 kendaraan, dilengkapi dengan area parkir khusus 
-                untuk difabel dan motor.
-              </p>
-              <ul className="list-disc pl-5 space-y-1 text-muted-foreground">
-                <li>Parkir mobil: 150 slot</li>
-                <li>Parkir motor: 50 slot</li>
-                <li>Parkir difabel: 5 slot</li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="text-xl font-semibold mb-3">Aksesibilitas</h3>
-              <p className="text-muted-foreground">
-                Gereja dilengkapi dengan fasilitas ramah difabel termasuk jalur kursi roda, 
-                toilet khusus, dan lift untuk akses ke lantai atas.
-              </p>
-              <div className="mt-4">
-                <h4 className="font-semibold mb-2">Alamat Gereja</h4>
-                <p className="text-muted-foreground">
-                  Jl. Dr. Sutomo No.4, Talang Semut, Kec. Bukit Kecil, Kota Palembang, Sumatera Selatan 30121
-                </p>
-              </div>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
+        </div>
+      </main>
+      <Footer />
     </div>
   );
 };

@@ -1,12 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import Breadcrumb from "@/components/Breadcrumb";
 
 const AjaranGereja = () => {
-  const breadcrumbItems = [
-    { name: "Beranda", path: "/" },
-    { name: "Ajaran Gereja" }
-  ];
-
   const teachings = [
     {
       title: "Sakramen Baptis",
@@ -26,7 +20,7 @@ const AjaranGereja = () => {
     },
     {
       title: "Sakramen Pernikahan",
-      description: "Sakramen yang menyatukan pria dan wanita dalam ikatan cinta yang kudus dan tak terpisahkan."
+      description: "Sakramen yang menyatikan pria dan wanita dalam ikatan cinta yang kudus dan tak terpisahkan."
     },
     {
       title: "Sakramen Tahbisan",
@@ -36,8 +30,6 @@ const AjaranGereja = () => {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <Breadcrumb items={breadcrumbItems} />
-      
       <div className="text-center mb-16">
         <h1 className="text-4xl md:text-5xl font-bold text-primary mb-4">
           Ajaran Gereja

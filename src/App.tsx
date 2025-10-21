@@ -14,7 +14,7 @@ import SambutanPengurusGereja from "./pages/SambutanPengurusGereja";
 import FasilitasGereja from "./pages/FasilitasGereja";
 import JadwalMisa from "./pages/JadwalMisa";
 import JadwalKegiatanKategorial from "./pages/JadwalKegiatanKategorial";
-import AjaranGereja from "./components/AjaranGereja";
+import AjaranGerejaPage from "./pages/AjaranGerejaPage";
 import IsiKegiatan from "./pages/IsiKegiatan";
 import FormulirKrisma from "./pages/FormulirKrisma";
 import FormulirKatakumen from "./pages/FormulirKatakumen";
@@ -45,7 +45,7 @@ const App = () => (
           <Route path="/jadwal-kegiatan-kategorial" element={<JadwalKegiatanKategorial />} />
           
           {/* Ajaran Gereja */}
-          <Route path="/ajaran-gereja" element={<AjaranGereja />} />
+          <Route path="/ajaran-gereja" element={<AjaranGerejaPage />} />
           
           {/* Komunitas Gereja Routes */}
           <Route path="/isi-kegiatan" element={<IsiKegiatan />} />
