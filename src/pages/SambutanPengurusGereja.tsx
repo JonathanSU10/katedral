@@ -9,15 +9,15 @@ const SambutanPengurusGereja = () => {
       <main className="flex-1">
         <div className="container mx-auto px-4 py-8">
           <div className="text-center mb-12">
-            <h1 className="text-4xl font-bold text-primary mb-4">Sambutan Pengurus Gereja</h1>
+            <h1 className="text-4xl font-bold text-primary mb-4">Struktur Pengurus Gereja</h1>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Sambutan dari Para Pengurus Gereja Katedral Santa Maria Palembang
+              Struktur dari Para Pengurus Gereja Katedral Santa Maria Palembang
             </p>
           </div>
 
           <Card className="border-border/50 bg-card/80 backdrop-blur-sm">
             <CardHeader>
-              <CardTitle className="text-2xl text-primary">Sambutan Pengurus Gereja</CardTitle>
+              <CardTitle className="text-2xl text-primary">Sruktur Pengurus Gereja</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="prose max-w-none">

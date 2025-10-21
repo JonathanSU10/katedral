@@ -16,11 +16,15 @@ import JadwalMisa from "./pages/JadwalMisa";
 import JadwalKegiatanKategorial from "./pages/JadwalKegiatanKategorial";
 import AjaranGerejaPage from "./pages/AjaranGerejaPage";
 import IsiKegiatan from "./pages/IsiKegiatan";
+import Komunitas from "./pages/Komunitas";
 import FormulirKrisma from "./pages/FormulirKrisma";
 import FormulirKatakumen from "./pages/FormulirKatakumen";
 import Announcements from "./pages/Announcements";
+import AnnouncementDetail from "./pages/AnnouncementDetail";
 import Contact from "./pages/Contact";
 import FormulirKontak from "./pages/FormulirKontak";
+import AdminLogin from "./pages/AdminLogin";
+import AdminDashboard from "./pages/AdminDashboard";
 
 const queryClient = new QueryClient();
 
@@ -48,14 +52,20 @@ const App = () => (
           <Route path="/ajaran-gereja" element={<AjaranGerejaPage />} />
           
           {/* Komunitas Gereja Routes */}
+          <Route path="/komunitas" element={<Komunitas />} />
           <Route path="/isi-kegiatan" element={<IsiKegiatan />} />
           <Route path="/formulir-krisma" element={<FormulirKrisma />} />
           <Route path="/formulir-katakumen" element={<FormulirKatakumen />} />
           
           {/* Other Routes */}
           <Route path="/pengumuman" element={<Announcements />} />
+          <Route path="/pengumuman/:id" element={<AnnouncementDetail />} />
           <Route path="/kontak" element={<Contact />} />
           <Route path="/formulir-kontak" element={<FormulirKontak />} />
+          
+          {/* Admin Routes */}
+          <Route path="/admin/login" element={<AdminLogin />} />
+          <Route path="/admin/dashboard" element={<AdminDashboard />} />
           
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />

@@ -1,51 +1,48 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Calendar, Clock } from "lucide-react";
+import { Calendar } from "lucide-react";
+import { useEffect, useState } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import ApiService from "@/services/apiService";
+
+interface Announcement {
+  id: number;
+  title: string;
+  content: string;
+  created_at: string;
+  updated_at: string;
+}
 
 const Announcements = () => {
-  const announcements = [
-    {
-      id: 1,
-      title: "Perayaan Natal 2024",
-      date: "2024-12-24",
-      time: "19.00 WIB",
-      content: "Gereja akan menyelenggarakan perayaan Natal pada malam tahun baru 2024. Acara akan dimulai pada pukul 19.00 WIB dengan misa kudus diikuti dengan perayaan bersama umat. Mari kita rayakan kelahiran Tuhan Yesus Kristus dengan penuh sukacita dan damai sejahtera.",
-      category: "Kegiatan"
-    },
-    {
-      id: 2,
-      title: "Retret Pra-Natal",
-      date: "2024-12-20",
-      time: "07.00 WIB - 17.00 WIB",
-      content: "Dalam rangka menyambut perayaan Natal, gereja akan mengadakan retret Pra-Natal selama satu hari pada tanggal 20 Desember 2024. Retret ini terbuka untuk semua umat yang ingin mempersiapkan hati dalam menyambut kelahiran Tuhan Yesus Kristus.",
-      category: "Kegiatan"
-    },
-    {
-      id: 3,
-      title: "Pembaharuan Jadwal Misa Minggu",
-      date: "2024-12-01",
-      time: "Mulai 1 Desember 2024",
-      content: "Terhitung mulai tanggal 1 Desember 2024, jadwal misa minggu akan mengalami perubahan. Misa pagi akan dimulai pada pukul 07.00 WIB dan misa sore pada pukul 18.00 WIB. Mohon perhatian dan kerjasama dari seluruh umat.",
-      category: "Pengumuman"
-    },
-    {
-      id: 4,
-      title: "Baksos Natal 2024",
-      date: "2024-12-25",
-      time: "09.00 WIB - 15.00 WIB",
-      content: "Gereja akan mengadakan bakti sosial Natal 2024 dalam bentuk pembagian sembako kepada saudara-saudari kita yang membutuhkan. Kegiatan ini akan dilaksanakan pada tanggal 25 Desember 2024 pukul 09.00 WIB - 15.00 WIB di halaman gereja. Mari kita wujudkan kasih Kristus dengan membantu sesama.",
-      category: "Kegiatan"
-    },
-    {
-      id: 5,
-      title: "Pendaftaran OMK 2025",
-      date: "2024-11-15",
-      time: "Sampai 30 November 2024",
-      content: "Dibuka pendaftaran anggota baru Orang Muda Katolik (OMK) tahun 2025. Bagi para pemuda yang berusia antara 15-35 tahun dan ingin terlibat dalam kegiatan gereja, silakan mendaftar di sekretariat OMK sampai dengan tanggal 30 November 2024.",
-      category: "Kegiatan"
-    }
-  ];
+  const [announcements, setAnnouncements] = useState<Announcement[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchAnnouncements = async () => {
+      try {
+        const data = await ApiService.getAnnouncements();
+        setAnnouncements(data);
+      } catch (error) {
+        console.error("Failed to fetch announcements:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchAnnouncements();
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex flex-col">
+        <Header />
+        <main className="flex-1 flex items-center justify-center">
+          <p className="text-lg text-muted-foreground">Memuat pengumuman...</p>
+        </main>
+        <Footer />
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -59,37 +56,39 @@ const Announcements = () => {
             </p>
           </div>
 
-          <div className="space-y-6">
-            {announcements.map((announcement) => (
-              <Card key={announcement.id} className="border-border/50 bg-card/80 backdrop-blur-sm hover:shadow-hope transition-all">
-                <CardHeader>
-                  <div className="flex flex-wrap items-center justify-between gap-4">
-                    <CardTitle className="text-xl text-primary">{announcement.title}</CardTitle>
-                    <div className="flex items-center gap-4">
-                      <div className="flex items-center gap-1 text-sm text-muted-foreground">
-                        <Calendar className="h-4 w-4" />
-                        <span>{announcement.date}</span>
-                      </div>
-                      <div className="flex items-center gap-1 text-sm text-muted-foreground">
-                        <Clock className="h-4 w-4" />
-                        <span>{announcement.time}</span>
+          {announcements.length === 0 ? (
+            <div className="text-center py-12">
+              <div className="bg-muted/50 rounded-lg p-8 max-w-md mx-auto">
+                <h3 className="text-xl font-semibold mb-2">Belum Ada Pengumuman</h3>
+                <p className="text-muted-foreground">
+                  Saat ini belum ada pengumuman. Silakan periksa kembali nanti untuk informasi terbaru.
+                </p>
+              </div>
+            </div>
+          ) : (
+            <div className="space-y-6">
+              {announcements.map((announcement) => (
+                <Card key={announcement.id} className="border-border/50 bg-card/80 backdrop-blur-sm hover:shadow-hope transition-all">
+                  <CardHeader>
+                    <div className="flex flex-wrap items-center justify-between gap-4">
+                      <CardTitle className="text-xl text-primary">{announcement.title}</CardTitle>
+                      <div className="flex items-center gap-4">
+                        <div className="flex items-center gap-1 text-sm text-muted-foreground">
+                          <Calendar className="h-4 w-4" />
+                          <span>{new Date(announcement.created_at).toLocaleDateString('id-ID')}</span>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  <div>
-                    <span className="inline-block px-3 py-1 text-xs font-semibold rounded-full bg-secondary text-secondary-foreground">
-                      {announcement.category}
-                    </span>
-                  </div>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground leading-relaxed">
-                    {announcement.content}
-                  </p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-muted-foreground leading-relaxed">
+                      {announcement.content}
+                    </p>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          )}
         </div>
       </main>
       <Footer />

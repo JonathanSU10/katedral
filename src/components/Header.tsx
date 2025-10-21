@@ -18,7 +18,7 @@ const Header = () => {
     { name: "Sejarah Singkat Gereja", path: "/sejarah-singkat-gereja" },
     { name: "Sambutan Romo Paroki", path: "/sambutan-romo-paroki" },
     { name: "Sambutan Bapak Uskup", path: "/sambutan-uskup" },
-    { name: "Sambutan Pengurus Gereja", path: "/sambutan-pengurus-gereja" },
+    { name: "Struktur Pengurus Gereja", path: "/sambutan-pengurus-gereja" },
     { name: "Fasilitas Gereja", path: "/fasilitas-gereja" }
   ];
 
@@ -28,6 +28,7 @@ const Header = () => {
   ];
 
   const komunitasItems = [
+    { name: "Komunitas", path: "/komunitas" },
     { name: "Isi Kegiatan", path: "/isi-kegiatan" }
     // Formulir items have been moved to formulirItems
   ];
@@ -39,7 +40,8 @@ const Header = () => {
   ];
 
   const kontakItems = [
-    { name: "Nomor Telepon / Email / Alamat", path: "/kontak" }
+    { name: "Nomor Telepon / Email / Alamat", path: "/kontak" },
+    { name: "Admin Login", path: "/admin/login" }
   ];
 
   return (

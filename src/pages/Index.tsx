@@ -2,38 +2,45 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Calendar, Clock } from "lucide-react";
+import { useEffect, useState } from "react";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import AjaranGereja from "@/components/AjaranGereja";
 import Footer from "@/components/Footer";
 import Breadcrumb from "@/components/Breadcrumb";
+import ApiService from "@/services/apiService";
+
+interface Announcement {
+  id: number;
+  title: string;
+  content: string;
+  created_at: string;
+  updated_at: string;
+}
 
 const Index = () => {
   const breadcrumbItems = [
     { name: "Beranda" }
   ];
 
-  // Sample announcements data
-  const announcements = [
-    {
-      id: 1,
-      title: "Perayaan Natal 2024",
-      date: "2024-12-24",
-      excerpt: "Gereja akan menyelenggarakan perayaan Natal pada malam tahun baru 2024..."
-    },
-    {
-      id: 2,
-      title: "Retret Pra-Natal",
-      date: "2024-12-20",
-      excerpt: "Dalam rangka menyambut perayaan Natal, gereja akan mengadakan retret Pra-Natal..."
-    },
-    {
-      id: 3,
-      title: "Baksos Natal 2024",
-      date: "2024-12-25",
-      excerpt: "Gereja akan mengadakan bakti sosial Natal 2024 dalam bentuk pembagian sembako..."
-    }
-  ];
+  const [announcements, setAnnouncements] = useState<Announcement[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchAnnouncements = async () => {
+      try {
+        const data = await ApiService.getAnnouncements();
+        // Take only the first 3 announcements for the homepage
+        setAnnouncements(data.slice(0, 3));
+      } catch (error) {
+        console.error("Failed to fetch announcements:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchAnnouncements();
+  }, []);
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -51,29 +58,39 @@ const Index = () => {
               </Button>
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {announcements.map((announcement) => (
-                <Card key={announcement.id} className="border-border/50 hover:shadow-hope transition-all duration-300 hover:-translate-y-1 bg-card/80 backdrop-blur-sm">
-                  <CardHeader>
-                    <CardTitle className="text-primary text-lg line-clamp-2">
-                      {announcement.title}
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="flex items-center gap-1 text-sm text-muted-foreground mb-2">
-                      <Calendar className="h-4 w-4" />
-                      <span>{announcement.date}</span>
-                    </div>
-                    <p className="text-muted-foreground text-sm mb-4 line-clamp-3">
-                      {announcement.excerpt}
-                    </p>
-                    <Button variant="link" className="p-0 h-auto" asChild>
-                      <Link to="/pengumuman">Baca selengkapnya</Link>
-                    </Button>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
+            {loading ? (
+              <div className="flex justify-center items-center h-48">
+                <p className="text-muted-foreground">Memuat pengumuman...</p>
+              </div>
+            ) : announcements.length === 0 ? (
+              <div className="text-center py-8">
+                <p className="text-muted-foreground">Belum ada pengumuman</p>
+              </div>
+            ) : (
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {announcements.map((announcement) => (
+                  <Card key={announcement.id} className="border-border/50 hover:shadow-hope transition-all duration-300 hover:-translate-y-1 bg-card/80 backdrop-blur-sm">
+                    <CardHeader>
+                      <CardTitle className="text-primary text-lg line-clamp-2">
+                        {announcement.title}
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="flex items-center gap-1 text-sm text-muted-foreground mb-2">
+                        <Calendar className="h-4 w-4" />
+                        <span>{new Date(announcement.created_at).toLocaleDateString('id-ID')}</span>
+                      </div>
+                      <p className="text-muted-foreground text-sm mb-4 line-clamp-3">
+                        {announcement.content.substring(0, 100)}...
+                      </p>
+                      <Button variant="link" className="p-0 h-auto" asChild>
+                        <Link to={`/pengumuman/${announcement.id}`}>Baca selengkapnya</Link>
+                      </Button>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            )}
           </div>
         </section>
         
