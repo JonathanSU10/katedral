@@ -38,7 +38,7 @@ const AdminDashboard = () => {
   const fetchAnnouncements = async () => {
     try {
       const token = localStorage.getItem("adminToken");
-      const response = await fetch("http://localhost:5000/api/announcements", {
+      const response = await fetch("/api/announcements", {
         headers: {
           "x-auth-token": token || "",
         },
@@ -64,7 +64,7 @@ const AdminDashboard = () => {
     e.preventDefault();
     try {
       const token = localStorage.getItem("adminToken");
-      const response = await fetch("http://localhost:5000/api/announcements", {
+      const response = await fetch("/api/announcements", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -100,7 +100,7 @@ const AdminDashboard = () => {
   const handleUpdateAnnouncement = async (id: number) => {
     try {
       const token = localStorage.getItem("adminToken");
-      const response = await fetch(`http://localhost:5000/api/announcements/${id}`, {
+      const response = await fetch(`/api/announcements/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -136,7 +136,7 @@ const AdminDashboard = () => {
   const handleDeleteAnnouncement = async (id: number) => {
     try {
       const token = localStorage.getItem("adminToken");
-      const response = await fetch(`http://localhost:5000/api/announcements/${id}`, {
+      const response = await fetch(`/api/announcements/${id}`, {
         method: "DELETE",
         headers: {
           "x-auth-token": token || "",
