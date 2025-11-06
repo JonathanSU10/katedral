@@ -180,14 +180,83 @@ Website dapat di-deploy ke berbagai platform:
 - Jalankan `npm run build` untuk melihat error detail
 - Pastikan semua import sudah benar
 - Check TypeScript errors
-<<<<<<< HEAD
-=======
+
+## Memindahkan Project
+
+Selain menjalankan `npm install`, ada beberapa hal lain yang perlu dilakukan untuk memindahkan project ini ke lingkungan baru:
+
+### 1. Persyaratan Sistem
+- **Node.js** versi 14 atau lebih tinggi
+- **PostgreSQL** database
+- **npm** atau **yarn** sebagai package manager
+
+### 2. Konfigurasi Database
+1. Instal dan jalankan PostgreSQL di server/database lokal Anda
+2. Buat database dengan nama `katedral`:
+   ```sql
+   CREATE DATABASE katedral;
+   ```
+3. Update file `.env` di direktori `backend` dengan kredensial database Anda:
+   ```
+   # Server Configuration
+   PORT=5000
+   JWT_SECRET=katedral_secret_key_2025
+   
+   # Database Configuration
+   DB_USER=postgres          # Ganti dengan username database Anda
+   DB_HOST=localhost         # Ganti dengan host database Anda
+   DB_NAME=katedral
+   DB_PASSWORD=1234          # Ganti dengan password database Anda
+   DB_PORT=5432
+   ```
+
+### 3. Inisialisasi Database
+Setelah konfigurasi database selesai, jalankan script inisialisasi untuk membuat tabel dan data default:
+```bash
+cd backend
+npm run init-db
+```
+
+Script ini akan:
+- Membuat tabel `users` untuk autentikasi admin
+- Membuat tabel `announcements` untuk pengumuman gereja
+- Membuat user admin default dengan username `admin` dan password `katedral2025`
+
+### 4. Menjalankan Server dalam Mode Development
+Untuk menjalankan frontend dan backend secara bersamaan dalam mode development:
+```bash
+npm run dev:all
+```
+
+Perintah ini akan menjalankan:
+- Frontend (Vite) di port 8080
+- Backend (Express) di port 5000
+
+Alternatifnya, Anda bisa menjalankan frontend dan backend secara terpisah:
+```bash
+# Terminal pertama - untuk frontend
+npm run dev
+
+# Terminal kedua - untuk backend
+cd backend
+npm run dev
+```
+
+### 5. Proxy API Configuration
+Frontend dikonfigurasi untuk mem-proxy permintaan API ke backend melalui Vite. Semua permintaan ke `/api` akan dialihkan ke `http://localhost:5000`. Jika Anda mengubah port backend, pastikan untuk memperbarui konfigurasi proxy di `vite.config.ts`.
+
+### 6. Variabel Lingkungan
+Pastikan semua variabel lingkungan yang diperlukan telah diatur dengan benar di file `.env` pada direktori backend:
+- `PORT`: Port untuk server backend (default: 5000)
+- `JWT_SECRET`: Kunci rahasia untuk token JWT (harus cocok dengan yang digunakan dalam kode)
+- `DB_USER`: Username database PostgreSQL
+- `DB_HOST`: Host database (biasanya localhost)
+- `DB_NAME`: Nama database (katedral)
+- `DB_PASSWORD`: Password untuk akses database
+- `DB_PORT`: Port database PostgreSQL (default: 5432)
 
 ## Kontak Developer
 
 Untuk pertanyaan teknis atau maintenance, hubungi tim development melalui channel yang tersedia di platform Lovable.
 
->>>>>>> 4e70097b3062ad4deb31d49a32d924e90c57dd35
----
-
-*Dokumentasi ini akan terus diperbarui seiring dengan pengembangan fitur baru.*
+```
