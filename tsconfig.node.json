@@ -12,7 +12,7 @@
     "moduleDetection": "force",
     "noEmit": true,
 
-    /* Linting */
+    /* Linti1ng */
     "strict": true,
     "noUnusedLocals": false,
     "noUnusedParameters": false,
